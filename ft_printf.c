@@ -10,9 +10,9 @@ int	ft_print_type(char c, va_list list)
 	base_hex = "0123456789abcdef";
 	base_HEX = "0123456789ABCDEF";
 	if (c == 'c')
-		return (ft_putchar((char)va_arg(list, int)));
+		return (ft_print_char((char)va_arg(list, int)));
 	else if (c == 's')
-		return (ft_putnbr_base(va_arg(list, char *)));
+		return (ft_print_str(va_arg(list, char *)));
 	else if (c == 'd' || c == 'i')
 		return (ft_putnbr_base(va_arg(list, int), base_ten));
 	else if (c == 'u')
@@ -21,7 +21,7 @@ int	ft_print_type(char c, va_list list)
 		return (ft_putnbr_base(va_arg(list, unsigned int), base_hex));
 	else if (c == 'X')
 		return (ft_putnbr_base(va_arg(list, unsigned int), base_HEX));
-	else if (c == 'P')
+	else if (c == 'p')
 		return (ft_print_ptr(va_arg(list, void *), base_hex));
 	else if (c == '%')
 		return (ft_print_char('%'));

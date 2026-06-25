@@ -7,7 +7,7 @@ AR			= ar
 ARFLAGS		= rcs
 RM			= rm -f
 
-LIBFT_DIR	= libft
+LIBFT_DIR	= Libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
 SRCS		= ft_printf.c \
