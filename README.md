@@ -26,6 +26,13 @@ Documentación Relacionada:
 3. **Documentación Online**:
    * **Cprogramming.com**: Referencia para ver ejemplos de argumentos variables como va_list.
    * **Tutorialspoint**: Repaso teórico sobre la interacción del sistema operativo con los descriptores de archivo (`fd`).
+4. **Uso de la libft**:
+Este proyecto integra la libreria libft:
+    * **ft_strlen**: Para calcular la longitud de strings.
+    * **ft_putchar**: Para escribir caracteres individuales.
+    * **ft_putstr**: Para escribir strings completos.
+    * Estas funciones se utilizan principalmente en la gestión de output y procesamiento de formatos.
+
 
 ## Instrucciones de Compilación e Instalación
 
