@@ -32,6 +32,7 @@ int	print_output(char *str, va_list list)
 {
 	size_t	i;
 	int	printed;
+	int	tmp;
 
 	i = 0;
 	printed = 0;
@@ -40,9 +41,12 @@ int	print_output(char *str, va_list list)
 		if (str[i] == '%')
 		{
 			if (str[i + 1] == '\0')
-				break ;
+				return (-1);
 			i++;
-			printed += ft_print_type(str[i], list);
+			tmp = ft_print_type(str[i], list);
+			if (tmp == -1)
+				return (-1);
+			printed += tmp;
 		}
 		else
 		{
