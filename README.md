@@ -24,7 +24,7 @@ Documentación Relacionada:
 1. **Manuales de Linux (`man`)**: Consulta directa en la terminal (`man printf`) para comprobar el comportamiento de los parámetros y las especificaciones exactas de la funcion.
 2. **Inteligencia Artificial (IA)**: Utilizada como tutor técnico interactivo para desatascar conceptos complejos.
 3. **Documentación Online**:
-   * **Cprogramming.com**: Referencia para ver ejemplos de argumentos variables como (`va_list´).
+   * **Cprogramming.com**: Referencia para ver ejemplos de argumentos variables como va_list.
    * **Tutorialspoint**: Repaso teórico sobre la interacción del sistema operativo con los descriptores de archivo (`fd`).
 
 ## Instrucciones de Compilación e Instalación
