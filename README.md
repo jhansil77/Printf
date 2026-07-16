@@ -17,6 +17,16 @@ Este proyecto forma parte de la formación en programación en C y demuestra la 
 
 Crear una función `ft_printf()` completamente funcional que replique el comportamiento de `printf()` estándar, soportando los especificadores de formato más comunes y devolviendo la cantidad de caracteres impresos.
 
+## 4. Recursos de Apoyo e Investigación
+
+Documentación Relacionada:
+
+1. **Manuales de Linux (`man`)**: Consulta directa en la terminal (`man printf`) para comprobar el comportamiento de los parámetros y las especificaciones exactas de la funcion.
+2. **Inteligencia Artificial (IA)**: Utilizada como tutor técnico interactivo para desatascar conceptos complejos.
+3. **Documentación Online**:
+   * **Cprogramming.com**: Referencia para ver ejemplos de argumentos variables como (`va_list´).
+   * **Tutorialspoint**: Repaso teórico sobre la interacción del sistema operativo con los descriptores de archivo (`fd`).
+
 ## Instrucciones de Compilación e Instalación
 
 ### Requisitos Previos
