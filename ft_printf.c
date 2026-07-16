@@ -14,13 +14,13 @@ int	ft_print_type(char c, va_list list)
 	else if (c == 's')
 		return (ft_print_str(va_arg(list, char *)));
 	else if (c == 'd' || c == 'i')
-		return (ft_putnbr_base(va_arg(list, int), base_ten));
+		return (ft_putnbr_base((long long)va_arg(list, int), base_ten));
 	else if (c == 'u')
-		return (ft_putnbr_base(va_arg(list, unsigned int), base_ten));
+		return (ft_putnbr_base_ul((unsigned long)va_arg(list, unsigned int), base_ten));
 	else if (c == 'x')
-		return (ft_putnbr_base(va_arg(list, unsigned int), base_hex));
+		return (ft_putnbr_base_ul((unsigned long)va_arg(list, unsigned int), base_hex));
 	else if (c == 'X')
-		return (ft_putnbr_base(va_arg(list, unsigned int), base_HEX));
+		return (ft_putnbr_base_ul((unsigned long)va_arg(list, unsigned int), base_HEX));
 	else if (c == 'p')
 		return (ft_print_ptr(va_arg(list, void *), base_hex));
 	else if (c == '%')
