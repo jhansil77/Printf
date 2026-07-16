@@ -44,34 +44,6 @@ make fclean
 # Recompilar desde cero
 make re
 ```
-
-### Instalación
-
-Una vez compilado, tendrás disponible `libftprintf.a`, que puedes incluir en tus proyectos:
-
-```bash
-# Copiar la librería a tu proyecto
-cp libftprintf.a /ruta/de/tu/proyecto/
-
-# Incluir en tu código
-#include "ft_printf.h"
-
-# Compilar con tu código
-gcc -o tu_programa tu_archivo.c libftprintf.a -Lft_printf_lib -I.
-```
-
-### Ejecución
-
-Para probar la implementación con el archivo `main.c` incluido:
-
-```bash
-# Compilar y ejecutar
-gcc -o test main.c ft_printf.c ft_putnbr_base.c -Libft -I.
-./test
-```
-
----
-
 ## Características Implementadas
 
 ### Especificadores Soportados
@@ -88,35 +60,6 @@ gcc -o test main.c ft_printf.c ft_putnbr_base.c -Libft -I.
 | `%p` | Puntero (dirección de memoria) | `ft_printf("%p", ptr);` → `0x7fff5fbff8c0` |
 | `%%` | Carácter de porcentaje | `ft_printf("100%%");` → `100%` |
 
-### Ejemplos de Uso
-
-```c
-#include "ft_printf.h"
-
-int main(void)
-{
-    int count;
-
-    // Ejemplo básico
-    count = ft_printf("Hello, %s!\n", "World");
-    printf("Characters printed: %d\n", count); // Characters printed: 14
-
-    // Números
-    ft_printf("Número: %d\n", 42);
-
-    // Punteros
-    int x = 10;
-    ft_printf("Dirección: %p\n", &x);
-
-    // Hexadecimal
-    ft_printf("Hex minúscula: %x, Hex mayúscula: %X\n", 255, 255);
-
-    // Porcentaje
-    ft_printf("Progreso: 100%%\n");
-
-    return (0);
-}
-```
 
 ---
 
