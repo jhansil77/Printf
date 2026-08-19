@@ -42,8 +42,7 @@ int	print_output(char *str, va_list list)
 		{
 			if (str[i + 1] == '\0')
 				return (-1);
-			i++;
-			tmp = ft_print_type(str[i], list);
+			tmp = ft_print_type(str[++i], list);
 			if (tmp == -1)
 				return (-1);
 			printed += tmp;
