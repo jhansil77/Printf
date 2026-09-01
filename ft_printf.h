@@ -15,7 +15,7 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include "Libft/libft.h"
 
 int	ft_printf(char const *format, ...);
 int	ft_print_char(char c);

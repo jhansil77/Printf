@@ -66,7 +66,7 @@ int main(void)
     printf("Retornos: ft_printf=%d, printf=%d\n\n", ret1, ret2);
 
     // 9. Unsigned
-	printf("------MI ORIGINAL:------\n");
+    printf("------MI FUNCION:------\n");
     ret1 = ft_printf("Unsigned: %u\n", 4294967295U);
 	printf("------FUNCION ORIGINAL:------\n");
     ret2 = printf("Unsigned: %u\n", 4294967295U);
