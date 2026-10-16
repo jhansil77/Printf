@@ -4,163 +4,113 @@
 
 ## Descripción del Proyecto
 
-**Printf** es una implementación personalizada de la función estándar `printf()` de la librería C. El objetivo es replicar el comportamiento de la función original, permitiendo formatear y imprimir strings utilizando especificadores de formato como `%d`, `%s`, `%x`, `%p`, entre otros.
+`ft_printf` es una reimplementación personalizada de la función estándar `printf()` de la librería C (`stdio.h`). El objetivo principal es replicar el comportamiento de la función original, permitiendo formatear y mostrar en pantalla textos y variables mediante especificadores de formato.
 
-Este proyecto forma parte de la formación en programación en C y demuestra la comprensión de:
-- Argumentos variables (`va_list`)
-- Gestión de memoria
-- Recursividad
-- Conversión de datos
-- Manejo de bases numéricas
-
-### Objetivo General
-
-Crear una función `ft_printf()` completamente funcional que replique el comportamiento de `printf()` estándar, soportando los especificadores de formato más comunes y devolviendo la cantidad de caracteres impresos.
+Este proyecto forma parte de la formación en programación C de la Escuela 42 y demuestra el dominio de:
+- Funciones con número variable de argumentos (`va_list`, `va_start`, `va_arg`, `va_end` de `<stdarg.h>`)
+- Manejo de tipos de datos y conversión de bases numéricas (decimal, hexadecimal)
+- Manejo de punteros y direcciones de memoria
+- Uso de funciones auxiliares e integración con la librería `Libft`
+- Gestión de salida estándar y conteo de caracteres impresos
 
 ---
 
-## Instrucciones de Compilación e Instalación
-
-### Requisitos Previos
-- Compilador: `gcc` o `clang`
-- Sistema: Linux/Unix/macOS
-- Make (para compilación automática)
-- Librería Libft (incluida como submódulo)
-
-### Compilación
-
-Para compilar el proyecto completo, usa el `Makefile`:
-
-```bash
-# Compilar la librería estática libftprintf.a
-make
-
-# Limpiar archivos objeto
-make clean
-
-# Limpiar todo (objetos + librería)
-make fclean
-
-# Recompilar desde cero
-make re
-```
 ## Características Implementadas
 
-### Especificadores Soportados
+### Especificadores de Formato Soportados
 
-| Especificador | Descripción | Ejemplo |
-|---|---|---|
-| `%c` | Carácter individual | `ft_printf("%c", 'A');` → `A` |
-| `%s` | String | `ft_printf("%s", "Hola");` → `Hola` |
-| `%d` | Número entero decimal (con signo) | `ft_printf("%d", 42);` → `42` |
-| `%i` | Número entero decimal (con signo) | `ft_printf("%i", -15);` → `-15` |
-| `%u` | Número entero sin signo | `ft_printf("%u", 4294967295);` → `4294967295` |
-| `%x` | Número hexadecimal en minúsculas | `ft_printf("%x", 255);` → `ff` |
-| `%X` | Número hexadecimal en mayúsculas | `ft_printf("%X", 255);` → `FF` |
-| `%p` | Puntero (dirección de memoria) | `ft_printf("%p", ptr);` → `0x7fff5fbff8c0` |
-| `%%` | Carácter de porcentaje | `ft_printf("100%%");` → `100%` |
-
+| Especificador | Descripción | Ejemplo de Uso | Salida Esperada |
+|---|---|---|---|
+| `%c` | Imprime un solo carácter | `ft_printf("%c", 'A');` | `A` |
+| `%s` | Imprime una cadena de caracteres (string) | `ft_printf("%s", "Hola 42");` | `Hola 42` |
+| `%p` | Imprime la dirección de memoria de un puntero en hexadecimal con prefijo `0x` | `ft_printf("%p", ptr);` | `0x7ffeefbff5c0` |
+| `%d` | Imprime un número entero decimal con signo | `ft_printf("%d", -42);` | `-42` |
+| `%i` | Imprime un entero en base 10 con signo | `ft_printf("%i", 100);` | `100` |
+| `%u` | Imprime un número entero decimal sin signo | `ft_printf("%u", 4294967295U);` | `4294967295` |
+| `%x` | Imprime un número hexadecimal en minúsculas | `ft_printf("%x", 255);` | `ff` |
+| `%X` | Imprime un número hexadecimal en mayúsculas | `ft_printf("%X", 255);` | `FF` |
+| `%%` | Imprime el símbolo de porcentaje | `ft_printf("100%%");` | `100%` |
 
 ---
 
 ## Estructura del Proyecto
 
-```
-Printf/
-├── README.md                 # Este archivo
-├── Makefile                  # Archivo de compilación
-├── ft_printf.h              # Archivo de encabezado
-├── ft_printf.c              # Función principal ft_printf
-├── ft_putnbr_base.c         # Funciones de conversión de bases y output
-├── main.c                   # Archivo de pruebas
-└── Libft/                   # Librería personalizada (submódulo)
-    ├── Makefile
-    ├── libft.h
-    └── ... (funciones auxiliares)
+```text
+ft_printf/
+├── Makefile          # Reglas de compilación (all, clean, fclean, re)
+├── ft_printf.h       # Archivo de cabecera con prototipos e includes
+├── ft_printf.c       # Función principal ft_printf y lógica de procesado de formato
+├── utils.c           # Funciones auxiliares para imprimir tipos, bases y punteros
+├── main.c            # Programa de prueba con casos de test
+└── Libft/            # Librería auxiliar de funciones estándar
 ```
 
 ### Descripción de Archivos
 
-- **ft_printf.h**: Encabezado que define la función `ft_printf()` y funciones auxiliares
-- **ft_printf.c**: Contiene la función principal `ft_printf()` que procesa el string de formato y delega el output a funciones especializadas
-- **ft_putnbr_base.c**: Implementa funciones para imprimir números en diferentes bases (decimal, hexadecimal, etc.) y manejo de caracteres/strings
-- **main.c**: Archivo de pruebas que verifica que la implementación coincida con `printf()` estándar
+- **`ft_printf.h`**: Declara los prototipos de las funciones, incluye las librerías necesarias (`<stdarg.h>`, `<unistd.h>`) e integra `"Libft/libft.h"`.
+- **`ft_printf.c`**:
+  - `ft_printf()`: Punto de entrada, inicializa `va_list` y llama a `print_output()`.
+  - `print_output()`: Recorre la cadena de formato, escribe caracteres ordinarios y delega especificadores (`%`) a `ft_print_type()`.
+  - `ft_print_type()`: Evalúa el carácter especificador y ejecuta la función correspondiente de `utils.c`.
+- **`utils.c`**:
+  - `ft_print_char()`: Imprime un carácter individual.
+  - `ft_print_str()`: Imprime una cadena de caracteres (maneja cadenas nulas imprimiendo `(null)`).
+  - `ft_print_ptr()`: Imprime direcciones de memoria (maneja punteros nulos imprimiendo `(nil)`).
+  - `ft_putnbr_base()`: Convierte e imprime números enteros con signo en cualquier base recursivamente.
+  - `ft_putnbr_base_ul()`: Convierte e imprime enteros sin signo (`unsigned long`) para direcciones de memoria.
 
 ---
 
-## Recursos y Referencias
+## Instrucciones de Compilación y Uso
 
-### Documentación Relacionada
+### Requisitos Previos
+- Compilador: `cc`, `gcc` o `clang`
+- Herramienta: `make`
+- Sistema operativo: Linux / macOS / Unix
 
-1. **Manuales de Linux (`man`)**: 
-   - Consulta directa en la terminal: `man printf`
-   - Verifica el comportamiento exacto de los parámetros y especificaciones
+### Comandos de Compilación
 
-2. **Documentación Online**:
-   - [Documentación oficial de printf](https://man7.org/linux/man-pages/man3/printf.3.html)
-   - [Cprogramming.com - Argumentos Variables](https://www.cprogramming.com/tutorial/c/lesson17.html)
-   - [TutorialsPoint - Funciones de C](https://www.tutorialspoint.com/c_standard_library/stdio_h.htm)
+Para generar la librería estática `libftprintf.a`:
 
-3. **Conceptos Clave a Estudiar**:
-   - Conversión entre bases numéricas
-   - Recursividad y manejo de pilas de llamadas
-   - Trabajo con punteros y casting de tipos
-   - Argumentos variables (`va_list`, `va_start`, `va_arg`, `va_end`)
+```bash
+make
+```
 
-### Especificación de Entrada/Salida
+Otros comandos del `Makefile`:
 
-- **Entrada:** String de formato y argumentos variables
-- **Salida:** String formateado impreso en stdout
-- **Retorno:** Número de caracteres impresos (o -1 en caso de error)
+```bash
+make clean    # Elimina los archivos objeto (.o)
+make fclean   # Elimina los archivos objeto y libftprintf.a
+make re       # Recompila el proyecto desde cero
+```
 
-### Uso de Libft
-
-Este proyecto integra la librería `libft`, especificando para qué partes del proyecto se utiliza:
-- **`ft_strlen()`**: Para calcular la longitud de strings
-- **`ft_putchar_fd()`**: Para escribir caracteres individuales
-- **`ft_putstr_fd()`**: Para escribir strings completos
-
-Estas funciones se utilizan principalmente en la gestión de output y procesamiento de formatos.
-
----
-
-## Decisiones Técnicas y Justificaciones
-
-### Algoritmo de Conversión de Bases
-
-Se utilizó una **aproximación recursiva** para convertir números a diferentes bases. Esta decisión se tomó porque:
-
-- Simplifica la inversión del orden de dígitos
-- Es más intuitiva y fácil de entender
-- Reduce la necesidad de buffers intermedios
-- Aprovecha la naturaleza recursiva del problema
+### Ejemplo de Uso en C
 
 ```c
-int ft_putnbr_base(long long nbr, char *base)
+#include "ft_printf.h"
+
+int main(void)
 {
-    // Procesa recursivamente cada dígito
-    // Detiene la recursión cuando nbr < base_n
+    int len;
+
+    len = ft_printf("Hola %s! El número es %d y en hex es %x.\n", "Mundo", 42, 42);
+    ft_printf("Caracteres impresos: %d\n", len);
+    return (0);
 }
 ```
 
-### Manejo de Argumentos Variables
+Para compilar tu programa enlazando con la librería:
 
-Se utiliza `<stdarg.h>` para acceder a argumentos variables:
-- **`va_start()`**: Inicializa el acceso a argumentos
-- **`va_arg()`**: Extrae el siguiente argumento
-- **`va_end()`**: Finaliza el acceso
-
-Esta es la única forma estándar en C de manejar un número variable de argumentos.
-
-### Estructura de Funciones Auxiliares
-
-La implementación se divide en funciones especializadas para mantener el código limpio y reutilizable:
-
-- **`ft_print_type()`**: Despacha a la función correcta según el especificador
-- **`print_output()`**: Itera sobre el string de formato y coordina el procesamiento
-- **`ft_putnbr_base()`**: Convierte números a cualquier base
-- **`ft_print_char()`**: Maneja caracteres individuales
-- **`ft_print_str()`**: Maneja strings
-- **`ft_print_ptr()`**: Maneja punteros
+```bash
+cc main.c libftprintf.a -I. -ILibft -o mi_programa
+./mi_programa
+```
 
 ---
+
+## Casos Especiales Manejados
+
+1. **Cadenas Nulas (`%s`)**: Si se pasa `NULL` a `%s`, se imprime `(null)` y devuelve `6`.
+2. **Punteros Nulos (`%p`)**: Si se pasa `NULL` a `%p`, se imprime `(nil)` y devuelve `5`.
+3. **Porcentaje (`%%`)**: Imprime un único carácter `%`.
+4. **Límites de Tipos**: Procesa de forma correcta los valores límites como `INT_MIN`, `INT_MAX` y enteros sin signo de 32 bits (`UINT_MAX`).
